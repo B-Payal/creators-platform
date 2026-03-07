@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import ConnectionTest from "../components/common/ConnectionTest"; 
 
 const Home = () => {
   return (
@@ -16,6 +17,9 @@ const Home = () => {
             Login
           </Link>
         </div>
+        <div style={{ maxWidth: '800px', margin: '0 auto', padding: '2rem' }}>
+        <ConnectionTest />
+      </div>
       </div>
 
       {/* Features Section (Optional) */}
@@ -24,16 +28,16 @@ const Home = () => {
         <div style={featureGridStyle}>
           {/* Add 3 feature cards based on your theme */}
           <div style={featureCardStyle}>
-            <h3>Feature 1</h3>
-            <p>Description</p>
+            <h3>Easy Article availability</h3>
+            <p>Read about all the articles published</p>
           </div>
           <div style={featureCardStyle}>
-            <h3>Feature 2</h3>
-            <p>Description</p>
+            <h3>Authors from all around</h3>
+            <p>List of all the authors </p>
           </div>
           <div style={featureCardStyle}>
-            <h3>Feature 3</h3>
-            <p>Description</p>
+            <h3>Every possible category</h3>
+            <p>Choose a category</p>
           </div>
         </div>
       </div>
