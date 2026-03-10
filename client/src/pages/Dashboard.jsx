@@ -1,30 +1,18 @@
-import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 const Dashboard = () => {
-  const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    // Check if user is logged in
-    const token = localStorage.getItem('token');
-    const userData = localStorage.getItem('user');
+  const { user, logout, loading } = useAuth();
 
-    if (!token || !userData) {
-      // Not logged in - redirect to login
-      navigate('/login');
-      return;
-    }
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
-    // Parse and set user data
-    try {
-      const parsedUser = JSON.parse(userData);
-      setUser(parsedUser);
-    } catch (error) {
-      console.error('Error parsing user data:', error);
-      navigate('/login');
-    }
-  }, [navigate]);
+  if (!user) {
+    return <navigate to="/login" />;
+  }
 
   const handleLogout = () => {
     // Clear localStorage
@@ -40,7 +28,8 @@ const Dashboard = () => {
   }
 
   return (
-    <div style={containerStyle}>
+    <div>
+     <div style={containerStyle}>
       <div style={headerStyle}>
         <h1>Welcome, {user.name}!</h1>
         <button onClick={handleLogout} style={logoutButtonStyle}>
@@ -70,6 +59,8 @@ const Dashboard = () => {
         </div>
       </div>
     </div>
+    </div>
+   
   );
 };
 
