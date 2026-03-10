@@ -1,7 +1,9 @@
 import { useState } from 'react';
+import { useAuth } from '../context/AuthContext';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
+  const { login } = useAuth(); // Get login function
   // Form field state
   const [formData, setFormData] = useState({
     email: '',
@@ -85,14 +87,7 @@ const handleSubmit = async (e) => {
     if (response.ok) {
       // Login successful
       
-      // 1. Store token in localStorage
-      localStorage.setItem('token', data.token);
-      
-      // 2. Store user data (optional, for display purposes)
-      localStorage.setItem('user', JSON.stringify(data.user));
-
-      // 3. Clear form
-      setFormData({ email: '', password: '' });
+      login(data.user, data.token);
 
       // 4. Redirect to dashboard
       navigate('/dashboard');
