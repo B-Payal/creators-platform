@@ -5,9 +5,9 @@ const Home = () => {
   return (
     <div style={containerStyle}>
       <div style={heroStyle}>
-        <h1 style={titleStyle}>{/* Platform Name/Tagline */}</h1>
+        <h1 style={titleStyle}>BlogHub</h1>
         <p style={subtitleStyle}>
-          {/* Brief description of what your platform does */}
+         Here , you can create your own blog posts with an ease in finding works of other people . So , that you can find inspos. Have a great journey ahead.
         </p>
         <div style={ctaStyle}>
           <Link to="/register" style={buttonStyle}>
