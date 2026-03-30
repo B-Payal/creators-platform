@@ -147,7 +147,7 @@ const handleSubmit = async (e) => {
     <div style={formContainerStyle}>
       <h1 style={titleStyle}>Create Your Account</h1>
       <p style={subtitleStyle}>
-        Join {/* Your Platform Name */} and start creating today
+        Join BlogHub and start creating today
       </p>
 
       {/* Success Message */}
