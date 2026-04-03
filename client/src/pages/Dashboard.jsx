@@ -1,38 +1,27 @@
-import { useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import api from '../services/api';
 
 const Dashboard = () => {
-  const navigate = useNavigate();
-
   const { user, logout, loading } = useAuth();
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div style={{ textAlign: 'center', padding: '2rem' }}>
+        Loading...
+      </div>
+    );
   }
 
   if (!user) {
-    return <navigate to="/login" />;
-  }
-
-  const handleLogout = () => {
-    // Clear localStorage
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    
-    // Redirect to login
-    navigate('/login');
-  };
-
-  if (!user) {
-    return <div style={{ textAlign: 'center', padding: '2rem' }}>Loading...</div>;
+    return <Navigate to="/login" />;
   }
 
   return (
-    <div>
-     <div style={containerStyle}>
+    <div style={containerStyle}>
       <div style={headerStyle}>
         <h1>Welcome, {user.name}!</h1>
-        <button onClick={handleLogout} style={logoutButtonStyle}>
+        <button onClick={logout} style={logoutButtonStyle}>
           Logout
         </button>
       </div>
@@ -43,13 +32,15 @@ const Dashboard = () => {
           <div style={infoStyle}>
             <p><strong>Name:</strong> {user.name}</p>
             <p><strong>Email:</strong> {user.email}</p>
-            <p><strong>Member Since:</strong> {new Date(user.createdAt).toLocaleDateString()}</p>
+            <p>
+              <strong>Member Since:</strong>{" "}
+              {new Date(user.createdAt).toLocaleDateString()}
+            </p>
           </div>
         </div>
 
         <div style={cardStyle}>
           <h2>Dashboard Features</h2>
-          <p>This is your personalized dashboard. Future features will include:</p>
           <ul>
             <li>Create and manage your content</li>
             <li>View your statistics</li>
@@ -59,10 +50,9 @@ const Dashboard = () => {
         </div>
       </div>
     </div>
-    </div>
-   
   );
 };
+
 
 const containerStyle = {
   minHeight: '80vh',

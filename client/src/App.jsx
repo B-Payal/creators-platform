@@ -49,23 +49,23 @@ function App() {
       </ProtectedRoute>
     } 
   />
-  {/* <Route 
+  <Route 
     path="/profile" 
     element={
       <ProtectedRoute>
         <Profile />
       </ProtectedRoute>
     } 
-  /> */}
+  />
   
-  {/* <Route 
+  <Route 
     path="/create" 
     element={
       <ProtectedRoute>
         <CreatePost />
       </ProtectedRoute>
     } 
-  /> */}
+  />
 </Routes>
         </main>
 
