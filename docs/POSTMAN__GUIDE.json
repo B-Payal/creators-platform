@@ -1,0 +1,22 @@
+{
+	"id": "6cbd12a1-ac7c-47f0-b8f3-dca983e8da13",
+	"name": "creator's platform",
+	"values": [
+		{
+			"key": "base_url",
+			"value": "",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "authToken",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		}
+	],
+	"color": null,
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2026-04-03T05:22:35.287Z",
+	"_postman_exported_using": "Postman/11.86.5"
+}
