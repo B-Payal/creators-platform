@@ -69,3 +69,59 @@ export const loginUser = async (req, res) => {
     });
   }
 };
+
+export const registerUser = async (req, res) => {
+  try {
+    const { name, email, password } = req.body;
+
+    // 1. Validate all required fields are provided
+    if (!name || !email || !password) {
+      return res.status(400).json({
+        success: false,
+        message: 'Please provide all required fields: name, email, and password'
+      });
+    }
+
+    // 2. Check if user already exists
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({
+        message: 'User with this email already exists'
+      });
+    }
+
+    // 3. Hash the password for security
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // 4. Create new user with hashed password
+    const user = await User.create({
+      name,
+      email,
+      password: hashedPassword
+    });
+    // 4. Generate JWT token
+    const token = jwt.sign(
+      { userId: user._id },
+      process.env.JWT_SECRET,
+      { expiresIn: process.env.JWT_EXPIRE || '7d' }
+    );
+
+    // 5. Remove password from response
+    user.password = undefined;
+
+    // 6. Send success response
+    res.status(201).json({
+      success: true,
+      message: 'User registered successfully',
+     token ,
+     user
+    });
+
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: 'Server error during registration',
+      error: error.message
+    });
+  }
+};
