@@ -49,23 +49,7 @@ function App() {
       </ProtectedRoute>
     } 
   />
-  <Route 
-    path="/profile" 
-    element={
-      <ProtectedRoute>
-        <Profile />
-      </ProtectedRoute>
-    } 
-  />
-  
-  <Route 
-    path="/create" 
-    element={
-      <ProtectedRoute>
-        <CreatePost />
-      </ProtectedRoute>
-    } 
-  />
+  <Route path="*" element={<NotFound />} />
 </Routes>
         </main>
 

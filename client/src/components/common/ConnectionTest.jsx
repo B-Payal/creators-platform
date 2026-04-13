@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 const ConnectionTest = () => {
+  const backendUrl = import.meta.env.VITE_API_BASE_URL;
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -54,7 +55,7 @@ const ConnectionTest = () => {
       )}
 
       <div style={infoStyle}>
-        <p><strong>Backend URL:</strong> http://localhost:5000</p>
+        <p><strong>Backend URL:</strong> {backendUrl}</p>
         <p><strong>Frontend URL:</strong> http://localhost:5173</p>
         <p><strong>Using:</strong> Vite Proxy</p>
       </div>
