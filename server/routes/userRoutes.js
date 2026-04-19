@@ -13,5 +13,9 @@ router.get('/', getAllUsers);
 router.get('/:id', getUserById);
 router.put('/:id', updateUser);
 router.delete('/:id', deleteUser);
+router.get('/', (req, res) => {
+  console.log("HIT /api/posts");
+  res.send("working");
+});
 
 export default router;

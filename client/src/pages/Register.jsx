@@ -99,7 +99,7 @@ const handleSubmit = async (e) => {
     };
 
     // Send POST request to backend
-    const response = await fetch('/api/users/register', {
+    const response = await fetch('/api/auth/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
