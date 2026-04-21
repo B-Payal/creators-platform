@@ -1,9 +1,34 @@
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import api from '../services/api';
+import { useEffect } from 'react';
+import socket from '../services/socket';
 
 const Dashboard = () => {
   const { user, logout, loading } = useAuth();
+  useEffect(()=>{
+    socket.connect();
+    socket.on('connect' , ()=>{
+      console.log('socket connected' , socket.id);
+    })
+
+    socket.on('disconnect' , (reason)=>{
+      console.log('disconnected socket' , reason)
+    });
+
+    socket.on('connect_error' , (err)=>{
+      console.log('connection lost due to some error' , err)
+    });
+    return ()=>{
+      socket.off('connect');
+      socket.off('disconnect');
+      socket.off('connect_error');
+      socket.disconnect();
+    }
+
+
+
+  } , [])
 
   if (loading) {
     return (
